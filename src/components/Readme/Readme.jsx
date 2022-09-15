@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 
-import Counter from "./Counter";
+import { Counter } from "components";
 
 const README_PATH =
   "https://raw.githubusercontent.com/Jobsity/ReactChallenge/main/README.md";
 
-function Readme() {
+const Readme = () => {
   const [md, setMd] = useState(null);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ function Readme() {
       .then((response) => {
         setMd(`${response}
         
-## About Unit Tests:
-The component below has a suite of tests to that could serve as guidance to unit test the calendar functionality, tests are located at \`src/components/Counter.test.jsx\`
-        
-`);
+      ## About Unit Tests:
+      The component below has a suite of tests to that could serve as guidance to unit test the calendar functionality, tests are located at \`src/components/Counter.test.jsx\`
+              
+      `);
       });
   }, []);
 
@@ -35,6 +35,6 @@ The component below has a suite of tests to that could serve as guidance to unit
       )}
     </div>
   );
-}
+};
 
 export default Readme;

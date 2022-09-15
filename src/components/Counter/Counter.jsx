@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { Button } from "components";
 import PropTypes from "prop-types";
 
-import Button from "./Button";
-
-function Counter({ limit }) {
-  const [count, setCount] = React.useState(0);
-  const isLimitReached = limit ? count === limit : false;
+const Counter = ({ limit = null }) => {
+  const [count, setCount] = useState(0);
+  const isLimitReached = count === limit;
 
   return (
     <div className="counter">
@@ -29,7 +28,7 @@ function Counter({ limit }) {
       {isLimitReached && <span>You reached the limit!</span>}
     </div>
   );
-}
+};
 
 Counter.propTypes = {
   limit: PropTypes.number,
