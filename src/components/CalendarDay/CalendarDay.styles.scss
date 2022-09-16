@@ -3,18 +3,18 @@
     width: 13vw;
     min-height: 5vh;
     cursor: cell;
-    background-color: #ffffff;
+    background-color:  $bg-color-primary;
 
     &:hover {
-      background: #aaeedd;
+      background: $bg-color-purple;
     }
 
     &--disabled {
-      background-color: #ededed !important;
+      background-color: $bg-color-secondary !important;
       cursor: not-allowed;
 
       &:hover {
-        background: #ededed;
+        background: $bg-color-secondary;
       }
     }
   }
@@ -22,7 +22,7 @@
   &-header {
     display: flex;
     justify-content: space-between;
-    margin-left: 6;
+    margin-left: $padding-small;
   }
 
   &-content {
@@ -30,9 +30,9 @@
   }
 
   &-text {
-    color: "#3c4043";
+    color: $tx-color-primary;
     text-align: "center";
-    font-size: 10px;
-    margin-top: 8px;
+    font-size: $font-size-extra-small;
+    margin-top: $padding-medium;
   }
 }
