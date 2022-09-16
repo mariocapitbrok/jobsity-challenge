@@ -24,7 +24,7 @@ const DateNavigator = ({ date = new Date(), handleDateChange = () => {} }) => {
 };
 
 DateNavigator.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default DateNavigator;

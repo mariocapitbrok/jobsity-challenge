@@ -1,0 +1,31 @@
+.calendar-header {
+  &-card {
+    width: 13vw;
+    min-height: 5vh;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #a2a3a4;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  &-text {
+    &--small {
+        display: none;
+
+        @media (max-width: $breakpoint-screen-small) {
+            display: inline;
+        }
+    }
+
+    &--large {
+        display: inline;
+
+        @media (max-width: $breakpoint-screen-small) {
+            display: none;
+        }
+    }
+  }
+}
