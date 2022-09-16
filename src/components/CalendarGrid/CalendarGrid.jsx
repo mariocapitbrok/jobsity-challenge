@@ -5,9 +5,11 @@ import { CalendarHeader, CalendarDay } from "components";
 import PropTypes from "prop-types";
 import { getCurrentMonthCalendarizableDays } from "utils/dateUtils";
 
+import { getRowHeightFromCurrentMonth } from "./helpers";
+
 const CalendarGrid = ({ date = new Date() }) => {
   const calendarDays = getCurrentMonthCalendarizableDays(date);
-  const gridRowHeight = "16vh";
+  const gridRowHeight = getRowHeightFromCurrentMonth(calendarDays?.length);
 
   return (
     <Grid
