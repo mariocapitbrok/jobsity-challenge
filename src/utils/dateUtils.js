@@ -67,6 +67,10 @@ export const getPreviousMonthDate = (date) => {
   return dayjs(date).subtract(1, "month");
 };
 
+export const getNextMonthDate = (date) => {
+  return dayjs(date).add(1, "month");
+};
+
 export const getCurrentDate = () => {
   const currentDate = dayjs();
   const { month, year } = getMonthYearDateText(currentDate);
