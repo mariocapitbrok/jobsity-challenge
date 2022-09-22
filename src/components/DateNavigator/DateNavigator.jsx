@@ -12,7 +12,7 @@ import {
 const DateNavigator = ({ date = new Date(), handleDateChange = () => {} }) => {
   const { month, year } = getMonthYearDateText(date);
 
-  const handleNagigationClick = ({ isNextMonthNavigation = true }) => {
+  const handleNavigationClick = ({ isNextMonthNavigation = true }) => {
     const newDate = isNextMonthNavigation
       ? getNextMonthDate(date)
       : getPreviousMonthDate(date);
@@ -29,7 +29,7 @@ const DateNavigator = ({ date = new Date(), handleDateChange = () => {} }) => {
   return (
     <div className="date-navigator-container">
       <IconButton
-        onClick={() => handleNagigationClick({ isNextMonthNavigation: false })}
+        onClick={() => handleNavigationClick({ isNextMonthNavigation: false })}
       >
         <ChevronLeftRounded />
       </IconButton>
@@ -37,7 +37,7 @@ const DateNavigator = ({ date = new Date(), handleDateChange = () => {} }) => {
         {month} {year}
       </p>
       <IconButton
-        onClick={() => handleNagigationClick({ isNextMonthNavigation: true })}
+        onClick={() => handleNavigationClick({ isNextMonthNavigation: true })}
       >
         <ChevronRightRounded />
       </IconButton>
