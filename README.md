@@ -37,6 +37,7 @@ You are provided a base application with a calendar page at `/calendar`. You mus
  -- Date/Time handling.
  - We have implemented Redux thunk for state management, but you may use any state manager you are familiar with.
  - Show us your capabilities in CSS and styling, if possible.
+ - Feel free to use Typescript if you prefer it
 
 # How to deploy
 
