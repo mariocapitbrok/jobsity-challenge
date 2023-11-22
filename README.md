@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://git.jobsity.com/jobsity/react-interview-challenge/-/raw/main/public/jobsity-logo.png"/>
+    <img src="https://main--elegant-rugelach-0bd4a4.netlify.app/_app/immutable/assets/jobsity-color.f8ccd325.svg"/>
 </div>
 
 # React Interview Challenge
