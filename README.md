@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://main--elegant-rugelach-0bd4a4.netlify.app/_app/immutable/assets/jobsity-color.f8ccd325.svg"/>
+    <img src="https://media.licdn.com/dms/image/D4E0BAQETyObSEmZH-A/company-logo_200_200/0/1693956448491/jobsity_llc_logo?e=1723075200&v=beta&t=rGq4fY1cprFyIaSabim0_bgb-QLCbJUk6Es9dXuua1w"/>
 </div>
 
 # React Interview Challenge
@@ -22,6 +22,7 @@ You are provided a base application with a calendar page at `/calendar`. You mus
  - Ability to edit reminders - including changing text, city, day, and time.
  - Add a weather service call from [VisualCrossing](https://www.visualcrossing.com/weather/weather-data-services#) and get the average temperature forecast (e.g. 15° C) for the date of the calendar reminder based on the city.
  - Change the weekend days cells' color
+ - You will need to **record a video explaining the code** you created, the decisions you made, its functionality, and demonstrating the complete operation of the challenge. _Remember to show the execution from scratch, it should not be running beforehand._
 
 ## Bonus (Optional)
 
