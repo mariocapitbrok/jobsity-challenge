@@ -3,18 +3,26 @@
     width: 13vw;
     min-height: 5vh;
     cursor: cell;
-    background-color:  $bg-color-primary;
+    background-color: $bg-color-primary;
 
     &:hover {
       background: $bg-color-purple;
     }
 
-    &--disabled {
-      background-color: $bg-color-secondary !important;
+    &.calendar-day-card--disabled {
+      background-color: $bg-color-secondary;
       cursor: not-allowed;
 
       &:hover {
         background: $bg-color-secondary;
+      }
+    }
+
+    &.calendar-day-card--weekend {
+      background-color: $bg-color-weekend;
+
+      &:hover {
+        background: $bg-color-weekend-hover;
       }
     }
   }
