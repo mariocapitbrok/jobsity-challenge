@@ -10,12 +10,7 @@
     {
       "src": "jobsity-logo.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "jobsity-logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "60x59"
     }
   ],
   "start_url": ".",
