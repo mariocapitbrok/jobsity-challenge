@@ -23,9 +23,9 @@ const CalendarGrid = ({ date = new Date() }) => {
       {calendarDays?.map((day) => (
         <CalendarDay
           key={`${day.number}.${day.month}.${day.year}`}
-          day={day.number}
-          month={day.month}
-          year={day.year}
+          day={parseInt(day.number, 10)}
+          month={parseInt(day.month, 10)}
+          year={parseInt(day.year, 10)}
           isEnabled={day.isEnabled}
           height={gridRowHeight}
         />
