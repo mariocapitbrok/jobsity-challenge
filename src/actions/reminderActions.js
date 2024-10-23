@@ -6,17 +6,17 @@ export const UPDATE_REMINDER = "UPDATE_REMINDER";
 export const DELETE_REMINDER = "DELETE_REMINDER";
 
 // Action creators
-export const addReminder = (date, reminder) => ({
+export const addReminder = (reminder) => ({
   type: ADD_REMINDER,
-  payload: { date, reminder },
+  payload: reminder,
 });
 
-export const updateReminder = (date, reminder) => ({
+export const updateReminder = (reminder) => ({
   type: UPDATE_REMINDER,
-  payload: { date, reminder },
+  payload: reminder,
 });
 
-export const deleteReminder = (date, reminderId) => ({
+export const deleteReminder = (reminderId) => ({
   type: DELETE_REMINDER,
-  payload: { date, reminderId },
+  payload: { reminderId },
 });

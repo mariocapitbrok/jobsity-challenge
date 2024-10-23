@@ -9,7 +9,9 @@ const initialState = {};
 const remindersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_REMINDER: {
-      const { date, reminder } = action.payload;
+      const reminder = action.payload;
+      const { date } = reminder;
+
       return {
         ...state,
         [date]: [...(state[date] || []), reminder],
