@@ -62,7 +62,8 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
                 >
                   {reminder.datetime.split("T")[1].substring(0, 5)} {` / `}
                   {reminder.city.name} {` - `} {reminder.city.tempForecast}
-                  {` `} {reminder.text}
+                  <br />
+                  {reminder.text}
                 </p>
               ))}
             </div>

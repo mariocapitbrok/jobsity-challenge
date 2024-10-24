@@ -13,15 +13,18 @@ const getDefaultTime = () => {
 const ReminderForm = ({ onSave, day, month, year, reminder }) => {
   const [reminderText, setReminderText] = useState("Reminder: ");
   const [reminderTime, setReminderTime] = useState(getDefaultTime());
-  const [cityName, setCityName] = useState("New York");
-  const [tempForecast, setTempForecast] = useState("?° C");
+  const [cityName, setCityName] = useState("London,UK");
+  const [tempForecast, setTempForecast] = useState("21.5° C");
   const [errorMessage, setErrorMessage] = useState("");
 
   const parseDatetime = (datetime) => {
     return datetime.split("T")[1];
   };
 
+  const datetime = `${year}-${month}-${day}T${reminderTime}:00`;
+
   useEffect(() => {
+    // Load values when updating the reminder
     if (reminder) {
       setReminderText(reminder.text);
       setReminderTime(parseDatetime(reminder.datetime));
@@ -45,16 +48,15 @@ const ReminderForm = ({ onSave, day, month, year, reminder }) => {
     }
   };
 
-  const debouncedFetchTemperature = debounce((city, datetime) => {
+  const fetchTemperatureWithDelay = debounce((city, datetime) => {
     fetchTemperature(city, datetime);
   }, 1000);
 
-  useEffect(() => {
+  const handleCityNameBlur = () => {
     if (cityName) {
-      const datetime = `${year}-${month}-${day}T${reminderTime}:00`;
-      debouncedFetchTemperature(cityName, datetime);
+      fetchTemperatureWithDelay(cityName, datetime);
     }
-  }, [cityName, day, debouncedFetchTemperature, month, reminderTime, year]);
+  };
 
   const handleSave = () => {
     if (reminderText.length > 30) {
@@ -64,13 +66,16 @@ const ReminderForm = ({ onSave, day, month, year, reminder }) => {
     if (reminderText && reminderTime && cityName && tempForecast) {
       const reminderData = {
         id: reminder ? reminder.id : Date.now(),
-        datetime: `${year}-${month}-${day}T${reminderTime}:00`,
+        datetime: datetime,
         text: reminderText,
         city: {
           name: cityName,
           tempForecast: tempForecast,
         },
       };
+      if (cityName) {
+        fetchTemperatureWithDelay(cityName, datetime);
+      }
       onSave(reminderData);
     }
   };
@@ -94,6 +99,7 @@ const ReminderForm = ({ onSave, day, month, year, reminder }) => {
         type="text"
         value={cityName}
         onChange={(e) => setCityName(e.target.value)}
+        onBlur={handleCityNameBlur}
         placeholder="City name"
       />
 
