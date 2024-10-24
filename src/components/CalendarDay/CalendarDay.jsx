@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Card, CardContent, Grid, Modal, Button } from "@material-ui/core";
-import { addReminder } from "actions/reminderActions";
+import { addReminder, updateReminder } from "actions/reminderActions";
 import ReminderForm from "components/ReminderForm";
 import PropTypes from "prop-types";
 
 const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedReminder, setSelectedReminder] = useState(null);
   const dispatch = useDispatch();
 
   const date = `${year}-${month}-${day}`;
   const reminders = useSelector((state) => state.reminders[date] || []);
 
   const handleAddReminder = (reminder) => {
-    dispatch(addReminder(reminder));
+    if (selectedReminder) {
+      dispatch(updateReminder(reminder));
+    } else {
+      dispatch(addReminder(reminder));
+    }
     setIsModalOpen(false);
+    setSelectedReminder(null);
+  };
+
+  const handleReminderClick = (reminder) => {
+    setSelectedReminder(reminder);
+    setIsModalOpen(true);
   };
 
   const currentDate = new Date(year, month - 1, day);
@@ -38,8 +49,15 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
             </div>
             <div className="calendar-day-reminders">
               {reminders.map((reminder, index) => (
-                <p key={index} className="reminder-text">
-                  {reminder.time} - {reminder.text}
+                <p
+                  key={index}
+                  className="reminder-text"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReminderClick(reminder);
+                  }}
+                >
+                  {reminder.datetime.split("T")[1]} - {reminder.text}
                 </p>
               ))}
             </div>
@@ -53,6 +71,7 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
             day={day}
             month={month}
             year={year}
+            reminder={selectedReminder}
           />
           <Button onClick={() => setIsModalOpen(false)}>Close</Button>
         </div>

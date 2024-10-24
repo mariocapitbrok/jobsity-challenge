@@ -16,7 +16,7 @@ export const updateReminder = (reminder) => ({
   payload: reminder,
 });
 
-export const deleteReminder = (reminderId) => ({
+export const deleteReminder = (id) => ({
   type: DELETE_REMINDER,
-  payload: { reminderId },
+  payload: id,
 });

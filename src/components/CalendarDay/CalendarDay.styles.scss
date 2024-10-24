@@ -34,13 +34,26 @@
   }
 
   &-content {
-    padding: 0;
+    padding: 0 !important; // Override the default Material UI padding
+  }
+
+  .MuiCardContent-root {
+    padding: 0 !important; // Extra specificity to ensure override works
   }
 
   &-text {
     color: $tx-color-primary;
-    text-align: "center";
+    text-align: center;
     font-size: $font-size-extra-small;
     margin-top: $padding-medium;
+  }
+
+  &-reminders {
+    .reminder-text {
+      cursor: pointer;
+      color: #6c757d; // Replace with a defined color variable if available
+      font-size: 0.875rem; // Replace with a defined font size variable if available
+      padding: 0 18px; // Replace with a defined padding variable if available
+    }
   }
 }

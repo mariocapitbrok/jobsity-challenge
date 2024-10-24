@@ -10,7 +10,7 @@ const remindersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_REMINDER: {
       const reminder = action.payload;
-      const { date } = reminder;
+      const date = reminder.datetime.split("T")[0];
 
       return {
         ...state,
@@ -19,7 +19,9 @@ const remindersReducer = (state = initialState, action) => {
     }
 
     case UPDATE_REMINDER: {
-      const { date, reminder } = action.payload;
+      const reminder = action.payload;
+      const date = reminder.datetime.split("T")[0];
+
       return {
         ...state,
         [date]: state[date].map((r) => (r.id === reminder.id ? reminder : r)),
@@ -27,11 +29,15 @@ const remindersReducer = (state = initialState, action) => {
     }
 
     case DELETE_REMINDER: {
-      const { date, reminderId } = action.payload;
-      return {
-        ...state,
-        [date]: state[date].filter((r) => r.id !== reminderId),
-      };
+      const id = action.payload;
+      const newState = { ...state };
+      for (const date in newState) {
+        newState[date] = newState[date].filter((r) => r.id !== id);
+        if (newState[date].length === 0) {
+          delete newState[date];
+        }
+      }
+      return newState;
     }
 
     default:
