@@ -7,7 +7,7 @@ import "./ReminderForm.styles.scss"; // Import the stylesheet
 const getDefaultTime = () => {
   return new Date()
     .toLocaleTimeString("en-US", { hour12: false, timeZone: "America/Chicago" })
-    .substring(0, 5);
+    .substring(0, 8);
 };
 
 const ReminderForm = ({ onSave, day, month, year, reminder }) => {
@@ -21,7 +21,7 @@ const ReminderForm = ({ onSave, day, month, year, reminder }) => {
     return datetime.split("T")[1];
   };
 
-  const datetime = `${year}-${month}-${day}T${reminderTime}:00`;
+  const datetime = `${year}-${month}-${day}T${reminderTime}`;
 
   useEffect(() => {
     // Load values when updating the reminder
