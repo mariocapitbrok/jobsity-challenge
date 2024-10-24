@@ -47,7 +47,10 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
             <div className="calendar-day-header">
               <p className="calendar-day-text">{day}</p>
             </div>
-            <div className="calendar-day-reminders">
+            <div
+              className="calendar-day-reminders"
+              style={{ maxHeight: "5rem", overflowY: "auto" }}
+            >
               {reminders.map((reminder, index) => (
                 <p
                   key={index}
@@ -57,9 +60,9 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
                     handleReminderClick(reminder);
                   }}
                 >
-                  {reminder.datetime.split("T")[1].substring(0, 5)} -
-                  {reminder.text} {` \n`} {reminder.city.name} -
-                  {reminder.city.tempForecast}
+                  {reminder.datetime.split("T")[1].substring(0, 5)} {` / `}
+                  {reminder.city.name} {` - `} {reminder.city.tempForecast}
+                  {` `} {reminder.text}
                 </p>
               ))}
             </div>

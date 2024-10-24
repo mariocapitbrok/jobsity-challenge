@@ -51,9 +51,14 @@
   &-reminders {
     .reminder-text {
       cursor: pointer;
-      color: #6c757d; // Replace with a defined color variable if available
-      font-size: 0.75rem; // Replace with a defined font size variable if available
-      padding: 0 18px; // Replace with a defined padding variable if available
+      color: #6c757d; // Replace with a defined color variable
+      font-size: 0.7rem; // Replace with a defined font size variable
+      padding: 0 1px 5px 18px; // Replace with a defined padding variable
     }
+  }
+
+  .calendar-day-reminders {
+    max-height: 5rem;
+    overflow-y: auto;
   }
 }
