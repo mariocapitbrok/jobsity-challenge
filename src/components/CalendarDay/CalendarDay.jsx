@@ -57,7 +57,9 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
                     handleReminderClick(reminder);
                   }}
                 >
-                  {reminder.datetime.split("T")[1]} - {reminder.text}
+                  {reminder.datetime.split("T")[1].substring(0, 5)} -
+                  {reminder.text} {` \n`} {reminder.city.name} -
+                  {reminder.city.tempForecast}
                 </p>
               ))}
             </div>
