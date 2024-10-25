@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedReminder, setSelectedReminder] = useState(null);
+  const [showAllReminders, setShowAllReminders] = useState(false);
   const dispatch = useDispatch();
 
   const date = `${year}-${month}-${day}`;
@@ -32,26 +33,40 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
   const currentDate = new Date(year, month - 1, day);
   const isWeekend = currentDate.getDay() === 0 || currentDate.getDay() === 6;
 
+  const maxVisibleReminders = 2;
+  const visibleReminders = showAllReminders
+    ? reminders
+    : reminders.slice(0, maxVisibleReminders);
+
+  const getCardClasses = () => {
+    let className = "calendar-day-card";
+    if (!isEnabled) className += " calendar-day-card--disabled";
+    if (isWeekend) className += " calendar-day-card--weekend";
+    return className;
+  };
+
+  const getReminderListClasses = () => {
+    let className = "reminder-list";
+    if (showAllReminders === true) className += " reminder-list-overflow";
+    if (showAllReminders === false) className = "reminder-list";
+    return className;
+  };
+
   return (
     <>
       <Card
         variant="outlined"
         style={{ height }}
-        className={`calendar-day-card ${
-          !isEnabled ? "calendar-day-card--disabled" : ""
-        } ${isWeekend ? "calendar-day-card--weekend" : ""}`}
+        className={getCardClasses()}
         onClick={() => isEnabled && setIsModalOpen(true)}
       >
+        <div className="calendar-day-header">
+          <p className="calendar-day-text">{day}</p>
+        </div>
         <CardContent className="calendar-day-content">
           <Grid item>
-            <div className="calendar-day-header">
-              <p className="calendar-day-text">{day}</p>
-            </div>
-            <div
-              className="calendar-day-reminders"
-              style={{ maxHeight: "5rem", overflowY: "auto" }}
-            >
-              {reminders.map((reminder, index) => (
+            <div className={getReminderListClasses()}>
+              {visibleReminders.map((reminder, index) => (
                 <p
                   key={index}
                   className="reminder-text"
@@ -60,15 +75,38 @@ const CalendarDay = ({ day, month, year, height, isEnabled = false }) => {
                     handleReminderClick(reminder);
                   }}
                 >
-                  {reminder.datetime.split("T")[1].substring(0, 5)} {` / `}
-                  {reminder.city.name} {` - `} {reminder.city.tempForecast}
-                  <br />
+                  {reminder.datetime.split("T")[1].substring(0, 5)} {` `}
+                  {reminder.city.name} {` ${reminder.city.tempForecast} `}
                   {reminder.text}
                 </p>
               ))}
             </div>
           </Grid>
         </CardContent>
+        <div className="calendar-day-footer">
+          {reminders.length > maxVisibleReminders && !showAllReminders && (
+            <Button
+              className="show-more-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAllReminders(true);
+              }}
+            >
+              Show more
+            </Button>
+          )}
+          {showAllReminders && reminders.length > maxVisibleReminders && (
+            <Button
+              className="show-less-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAllReminders(false);
+              }}
+            >
+              Show less
+            </Button>
+          )}
+        </div>
       </Card>
       <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="modal-content">

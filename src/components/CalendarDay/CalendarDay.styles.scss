@@ -56,9 +56,66 @@
       padding: 0 1px 5px 18px; // Replace with a defined padding variable
     }
   }
+}
 
-  .calendar-day-reminders {
-    max-height: 5rem;
-    overflow-y: auto;
-  }
+.calendar-day-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.calendar-day-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: $padding-small;
+}
+
+.calendar-day-content {
+  padding: 0 !important; // Override the default Material UI padding
+}
+
+.calendar-day-footer {
+  // background-color: #f0f0f0; /* Optional background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center text vertically */
+  text-align: center; /* Center text horizontally */
+  font-weight: bold;
+}
+
+.reminder-list {
+  max-height: 5rem;
+  overflow-y: hidden;
+}
+
+.reminder-text {
+  cursor: pointer;
+  color: #6c757d; // Replace with a defined color variable
+  font-size: 0.7rem; // Replace with a defined font size variable
+  padding: 0 1px 6px 16px; // Replace with a defined padding variable
+  max-height: 5rem;
+}
+
+.reminder-list-overflow {
+  max-height: 5rem;
+  overflow-y: auto;
+}
+
+// .show-more-button {
+//   background-color: rgb(177, 220, 255) !important;
+// }
+
+// .show-less-button:hover {
+//   background-color: rgb(177, 220, 255) !important;
+// }
+
+.show-more-button > span {
+  font-size: 0.7rem;
+  // background-color: #e1e4e7;
+}
+
+.show-less-button > span {
+  font-size: 0.7rem;
 }
